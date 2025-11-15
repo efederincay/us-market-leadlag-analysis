@@ -73,10 +73,10 @@ These analyses provide a robust econometric basis for the upcoming predictive mo
 These dynamics will directly inform feature engineering for the ML forecasting stage.
 
  Repository Structure
- ```
+ ```plaintext
 .
 ├── data/                         # Raw & processed datasets
-├── Lead_Lag_Analysis_US_Markets.ipynb  # Main econometric notebook
+├── Lead_Lag_Analysis_US_Markets.ipynb  # Main  notebook
 └── README.md                     # Project overview
 ```
 
