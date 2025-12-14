@@ -18,87 +18,77 @@ This repository contains the full econometric pipeline used to uncover
 lead–lag patterns, long-run equilibrium relationships, and shock transmission dynamics.
 
 ### Current Progress ###
- 1. Data Collection 
+ Current Progress
+1) Data Collection (1978–2025, monthly)
 
-Collected multi-source monthly datasets (1978–2025):
-
-DJT (Yahoo Finance + historical extension via FRED)
+DJT (Yahoo Finance + historical extension)
 
 S&P 500 (Yahoo Finance)
 
 Housing Index (FRED)
 
- 2. Data Cleaning & Alignment
+2) Data Cleaning & Alignment
 
-Converted all datasets to end-of-month frequency
+End-of-month alignment
 
-Standardized date formats
+Standardized date formats and column names
 
-Harmonized column names
+Unified dataset creation
 
-Merged into a unified DataFrame
+Log transforms + log-differences for return-style analysis
 
-Applied log transforms and stationarity preparation (log-differences)
+3) Econometric & Statistical Diagnostics
 
- 3. Exploratory Data Analysis
+Stationarity checks (ADF)
 
-Log-level trend analysis
+Cross-correlation / lead–lag exploration across multiple lags
 
-Monthly return behavior
+Additional econometric tests (Granger, cointegration, VECM, IRF/FEVD) in the notebook
 
-Crisis period visualization (e.g., 2008, 2020)
+4) ML Downturn Modeling (Reality Check)
 
- 4. Econometric Analysis 
+Multiple models tested (Ridge, RandomForest, XGBoost, LSTM)
 
-The project now includes:
+Result: no strong predictive signal; performance is limited, especially under class imbalance
 
-ADF stationarity testing
+Ridge shows only a weak linear edge; non-linear models are near chance in this setup
 
-Cross-correlation functions (CCF) for lead–lag detection
+5) Streamlit Diagnostic Dashboard
 
-Granger causality tests (1–12 month lags)
+A Streamlit dashboard was built to communicate findings clearly:
 
-Johansen cointegration test
+Home: key diagnostics + top lag evidence
 
-VECM (Vector Error Correction Model)
+Market Lab: time-series + rolling correlation + crisis window shading
 
-Impulse Response Functions (IRF)
+Lead–Lag Lab: interactive pair selection, lag range, best-lag KPI, top lags table
 
-Forecast Error Variance Decomposition (FEVD)
+ML Reality Check: downturn rarity stats + Ridge confusion matrix + model summary
 
-These analyses provide a robust econometric basis for the upcoming predictive modeling phase.
-
-
-
-These dynamics will directly inform feature engineering for the ML forecasting stage.
+Dashboard artefacts are exported as CSV files from the notebook and loaded by Streamlit.
 
  Repository Structure
  ```plaintext
 .
-├── data/                         # Raw & processed datasets
-├── Lead_Lag_Analysis_US_Markets.ipynb  # Main  notebook
-└── README.md                     # Project overview
+├── datas/                                 # Raw/processed datasets (project pipeline)
+├── Lead_Lag_Analysis_US_Markets.ipynb      # Main notebook (econometrics + ML)
+├── Dashboard/
+│   ├── app.py                             # Streamlit diagnostic dashboard
+│   ├── dashboard_datas/                   # Exported CSV artefacts for the dashboard
+│   ├── dashboard_figures/                 # Report-ready figures (PNG)
+│   └── Readme_dashboard_contract.txt      # Data/artefact contract notes
+└── README.md
+
+```
+How to Run the Dashboard
+From the project root:
+```
+streamlit run ./Dashboard/app.py
 ```
 
 
- ### Next Steps ###
-
-The upcoming phase will focus on machine learning downturn forecasting, including:
-
-Target construction (downturn indicators)
-
-Feature engineering using econometric insights
-
-Training ML models (linear, tree-based, sequence models)
-
-Time-series cross-validation
-
-Performance and interpretability analysis
-
-Optional dashboard for visualization
 
 
-### ---- ###
 
 Author
 
